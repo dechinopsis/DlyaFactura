@@ -1,16 +1,21 @@
-/**
- * FactureServicioService.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
- */
-
 package com.dlya.facturews;
 
-public interface FactureServicioService extends javax.xml.rpc.Service {
-    public java.lang.String getFactureServicioPortAddress();
+import java.net.URL;
+import javax.xml.rpc.Service;
+import javax.xml.rpc.ServiceException;
 
-    public com.dlya.facturews.FactureServicio getFactureServicioPort() throws javax.xml.rpc.ServiceException;
+public abstract interface FactureServicioService extends Service
+{
+  public abstract String getFactureServicioPortAddress();
 
-    public com.dlya.facturews.FactureServicio getFactureServicioPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+  public abstract FactureServicio getFactureServicioPort()
+    throws ServiceException;
+
+  public abstract FactureServicio getFactureServicioPort(URL paramURL)
+    throws ServiceException;
 }
+
+/* Location:           C:\Users\David\Desktop\BasesR\JAR\
+ * Qualified Name:     com.dlya.facturews.FactureServicioService
+ * JD-Core Version:    0.6.0
+ */

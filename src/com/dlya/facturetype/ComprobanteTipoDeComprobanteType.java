@@ -1,115 +1,57 @@
-/*
- * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 1.3.1</a>, using an XML
- * Schema.
- * $Id$
+/*     */ package com.dlya.facturetype;
+/*     */ 
+/*     */ import java.util.HashMap;
+/*     */ import java.util.Map;
+/*     */ 
+/*     */ public enum ComprobanteTipoDeComprobanteType
+/*     */ {
+/*  25 */   ingreso("ingreso"), 
+/*     */ 
+/*  29 */   egreso("egreso"), 
+/*     */ 
+/*  33 */   traslado("traslado");
+/*     */ 
+/*     */   private final String value;
+/*     */   private static final Map<String, ComprobanteTipoDeComprobanteType> enumConstants;
+/*     */ 
+/*     */   static
+/*     */   {
+/*  47 */     enumConstants = new HashMap();
+/*     */ 
+/*  51 */     for (ComprobanteTipoDeComprobanteType c : values())
+/*  52 */       enumConstants.put(c.value, c);
+/*     */   }
+/*     */ 
+/*     */   private ComprobanteTipoDeComprobanteType(String value)
+/*     */   {
+/*  63 */     this.value = value;
+/*     */   }
+/*     */ 
+/*     */   public static ComprobanteTipoDeComprobanteType fromValue(String value)
+/*     */   {
+/*  79 */     ComprobanteTipoDeComprobanteType c = (ComprobanteTipoDeComprobanteType)enumConstants.get(value);
+/*  80 */     if (c != null) {
+/*  81 */       return c;
+/*     */     }
+/*  83 */     throw new IllegalArgumentException(value);
+/*     */   }
+/*     */ 
+/*     */   public void setValue(String value)
+/*     */   {
+/*     */   }
+/*     */ 
+/*     */   public String toString()
+/*     */   {
+/* 102 */     return this.value.toLowerCase();
+/*     */   }
+/*     */ 
+/*     */   public String value()
+/*     */   {
+/* 112 */     return this.value;
+/*     */   }
+/*     */ }
+
+/* Location:           C:\Users\David\Desktop\BasesR\JAR\
+ * Qualified Name:     com.dlya.facturetype.ComprobanteTipoDeComprobanteType
+ * JD-Core Version:    0.6.0
  */
-
-package com.dlya.facturetype;
-
-/**
- * Enumeration ComprobanteTipoDeComprobanteType.
- * 
- * @version $Revision$ $Date$
- */
-public enum ComprobanteTipoDeComprobanteType {
-
-
-      //------------------/
-     //- Enum Constants -/
-    //------------------/
-
-    /**
-     * Constant INGRESO
-     */
-	ingreso("ingreso"),
-    /**
-     * Constant EGRESO
-     */
-	egreso("egreso"),
-    /**
-     * Constant TRASLADO
-     */
-	traslado("traslado");
-
-      //--------------------------/
-     //- Class/Member Variables -/
-    //--------------------------/
-
-    /**
-     * Field value.
-     */
-    private final java.lang.String value;
-
-    /**
-     * Field enumConstants.
-     */
-    private static final java.util.Map<java.lang.String, ComprobanteTipoDeComprobanteType> enumConstants = new java.util.HashMap<java.lang.String, ComprobanteTipoDeComprobanteType>();
-
-
-    static {
-        for (ComprobanteTipoDeComprobanteType c: ComprobanteTipoDeComprobanteType.values()) {
-            ComprobanteTipoDeComprobanteType.enumConstants.put(c.value, c);
-        }
-
-    };
-
-
-      //----------------/
-     //- Constructors -/
-    //----------------/
-
-    private ComprobanteTipoDeComprobanteType(final java.lang.String value) {
-        this.value = value;
-    }
-
-
-      //-----------/
-     //- Methods -/
-    //-----------/
-
-    /**
-     * Method fromValue.
-     * 
-     * @param value
-     * @return the constant for this value
-     */
-    public static ComprobanteTipoDeComprobanteType fromValue(
-            final java.lang.String value) {
-        ComprobanteTipoDeComprobanteType c = ComprobanteTipoDeComprobanteType.enumConstants.get(value);
-        if (c != null) {
-            return c;
-        }
-        throw new IllegalArgumentException(value);
-    }
-
-    /**
-     * 
-     * 
-     * @param value
-     */
-    public void setValue(
-            final java.lang.String value) {
-    }
-
-    /**
-     * Method toString.
-     * 
-     * @return the value of this constant
-     */
-    public java.lang.String toString(
-    ) {
-        return this.value.toLowerCase();
-    }
-
-    /**
-     * Method value.
-     * 
-     * @return the value of this constant
-     */
-    public java.lang.String value(
-    ) {
-        return this.value;
-    }
-
-}

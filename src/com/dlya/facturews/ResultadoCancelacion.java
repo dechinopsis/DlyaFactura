@@ -1,184 +1,148 @@
-/**
- * ResultadoCancelacion.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+/*     */ package com.dlya.facturews;
+/*     */ 
+/*     */ import java.io.Serializable;
+/*     */ import javax.xml.namespace.QName;
+/*     */ import org.apache.axis.description.ElementDesc;
+/*     */ import org.apache.axis.description.TypeDesc;
+/*     */ import org.apache.axis.encoding.Deserializer;
+/*     */ import org.apache.axis.encoding.Serializer;
+/*     */ import org.apache.axis.encoding.ser.BeanDeserializer;
+/*     */ import org.apache.axis.encoding.ser.BeanSerializer;
+/*     */ 
+/*     */ public class ResultadoCancelacion
+/*     */   implements Serializable
+/*     */ {
+/*     */   private boolean cancelado;
+/*     */   private int respuesta;
+/*     */   private String resultado;
+/*  89 */   private Object __equalsCalc = null;
+/*     */ 
+/* 110 */   private boolean __hashCodeCalc = false;
+/*     */ 
+/* 128 */   private static TypeDesc typeDesc = new TypeDesc(ResultadoCancelacion.class, true);
+/*     */ 
+/*     */   static {
+/* 131 */     typeDesc.setXmlType(new QName("http://facturews/", "resultadoCancelacion"));
+/* 132 */     ElementDesc elemField = new ElementDesc();
+/* 133 */     elemField.setFieldName("cancelado");
+/* 134 */     elemField.setXmlName(new QName("", "cancelado"));
+/* 135 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "boolean"));
+/* 136 */     elemField.setNillable(false);
+/* 137 */     typeDesc.addFieldDesc(elemField);
+/* 138 */     elemField = new ElementDesc();
+/* 139 */     elemField.setFieldName("respuesta");
+/* 140 */     elemField.setXmlName(new QName("", "respuesta"));
+/* 141 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "int"));
+/* 142 */     elemField.setNillable(false);
+/* 143 */     typeDesc.addFieldDesc(elemField);
+/* 144 */     elemField = new ElementDesc();
+/* 145 */     elemField.setFieldName("resultado");
+/* 146 */     elemField.setXmlName(new QName("", "resultado"));
+/* 147 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
+/* 148 */     elemField.setMinOccurs(0);
+/* 149 */     elemField.setNillable(false);
+/* 150 */     typeDesc.addFieldDesc(elemField);
+/*     */   }
+/*     */ 
+/*     */   public ResultadoCancelacion()
+/*     */   {
+/*     */   }
+/*     */ 
+/*     */   public ResultadoCancelacion(boolean cancelado, int respuesta, String resultado)
+/*     */   {
+/*  24 */     this.cancelado = cancelado;
+/*  25 */     this.respuesta = respuesta;
+/*  26 */     this.resultado = resultado;
+/*     */   }
+/*     */ 
+/*     */   public boolean isCancelado()
+/*     */   {
+/*  36 */     return this.cancelado;
+/*     */   }
+/*     */ 
+/*     */   public void setCancelado(boolean cancelado)
+/*     */   {
+/*  46 */     this.cancelado = cancelado;
+/*     */   }
+/*     */ 
+/*     */   public int getRespuesta()
+/*     */   {
+/*  56 */     return this.respuesta;
+/*     */   }
+/*     */ 
+/*     */   public void setRespuesta(int respuesta)
+/*     */   {
+/*  66 */     this.respuesta = respuesta;
+/*     */   }
+/*     */ 
+/*     */   public String getResultado()
+/*     */   {
+/*  76 */     return this.resultado;
+/*     */   }
+/*     */ 
+/*     */   public void setResultado(String resultado)
+/*     */   {
+/*  86 */     this.resultado = resultado;
+/*     */   }
+/*     */ 
+/*     */   public synchronized boolean equals(Object obj)
+/*     */   {
+/*  91 */     if (!(obj instanceof ResultadoCancelacion)) return false;
+/*  92 */     ResultadoCancelacion other = (ResultadoCancelacion)obj;
+/*  93 */     if (obj == null) return false;
+/*  94 */     if (this == obj) return true;
+/*  95 */     if (this.__equalsCalc != null) {
+/*  96 */       return this.__equalsCalc == obj;
+/*     */     }
+/*  98 */     this.__equalsCalc = obj;
+/*     */ 
+/* 100 */     boolean _equals = 
+/* 101 */       (this.cancelado == other.isCancelado()) && 
+/* 102 */       (this.respuesta == other.getRespuesta()) && (
+/* 103 */       ((this.resultado == null) && (other.getResultado() == null)) || (
+/* 104 */       (this.resultado != null) && 
+/* 105 */       (this.resultado.equals(other.getResultado()))));
+/* 106 */     this.__equalsCalc = null;
+/* 107 */     return _equals;
+/*     */   }
+/*     */ 
+/*     */   public synchronized int hashCode()
+/*     */   {
+/* 112 */     if (this.__hashCodeCalc) {
+/* 113 */       return 0;
+/*     */     }
+/* 115 */     this.__hashCodeCalc = true;
+/* 116 */     int _hashCode = 1;
+/* 117 */     _hashCode += (isCancelado() ? Boolean.TRUE : Boolean.FALSE).hashCode();
+/* 118 */     _hashCode += getRespuesta();
+/* 119 */     if (getResultado() != null) {
+/* 120 */       _hashCode += getResultado().hashCode();
+/*     */     }
+/* 122 */     this.__hashCodeCalc = false;
+/* 123 */     return _hashCode;
+/*     */   }
+/*     */ 
+/*     */   public static TypeDesc getTypeDesc()
+/*     */   {
+/* 157 */     return typeDesc;
+/*     */   }
+/*     */ 
+/*     */   public static Serializer getSerializer(String mechType, Class _javaType, QName _xmlType)
+/*     */   {
+/* 167 */     return 
+/* 168 */       new BeanSerializer(
+/* 169 */       _javaType, _xmlType, typeDesc);
+/*     */   }
+/*     */ 
+/*     */   public static Deserializer getDeserializer(String mechType, Class _javaType, QName _xmlType)
+/*     */   {
+/* 179 */     return 
+/* 180 */       new BeanDeserializer(
+/* 181 */       _javaType, _xmlType, typeDesc);
+/*     */   }
+/*     */ }
+
+/* Location:           C:\Users\David\Desktop\BasesR\JAR\
+ * Qualified Name:     com.dlya.facturews.ResultadoCancelacion
+ * JD-Core Version:    0.6.0
  */
-
-package com.dlya.facturews;
-
-public class ResultadoCancelacion  implements java.io.Serializable {
-    private boolean cancelado;
-
-    private int respuesta;
-
-    private java.lang.String resultado;
-
-    public ResultadoCancelacion() {
-    }
-
-    public ResultadoCancelacion(
-           boolean cancelado,
-           int respuesta,
-           java.lang.String resultado) {
-           this.cancelado = cancelado;
-           this.respuesta = respuesta;
-           this.resultado = resultado;
-    }
-
-
-    /**
-     * Gets the cancelado value for this ResultadoCancelacion.
-     * 
-     * @return cancelado
-     */
-    public boolean isCancelado() {
-        return cancelado;
-    }
-
-
-    /**
-     * Sets the cancelado value for this ResultadoCancelacion.
-     * 
-     * @param cancelado
-     */
-    public void setCancelado(boolean cancelado) {
-        this.cancelado = cancelado;
-    }
-
-
-    /**
-     * Gets the respuesta value for this ResultadoCancelacion.
-     * 
-     * @return respuesta
-     */
-    public int getRespuesta() {
-        return respuesta;
-    }
-
-
-    /**
-     * Sets the respuesta value for this ResultadoCancelacion.
-     * 
-     * @param respuesta
-     */
-    public void setRespuesta(int respuesta) {
-        this.respuesta = respuesta;
-    }
-
-
-    /**
-     * Gets the resultado value for this ResultadoCancelacion.
-     * 
-     * @return resultado
-     */
-    public java.lang.String getResultado() {
-        return resultado;
-    }
-
-
-    /**
-     * Sets the resultado value for this ResultadoCancelacion.
-     * 
-     * @param resultado
-     */
-    public void setResultado(java.lang.String resultado) {
-        this.resultado = resultado;
-    }
-
-    private java.lang.Object __equalsCalc = null;
-    public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof ResultadoCancelacion)) return false;
-        ResultadoCancelacion other = (ResultadoCancelacion) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
-        }
-        __equalsCalc = obj;
-        boolean _equals;
-        _equals = true && 
-            this.cancelado == other.isCancelado() &&
-            this.respuesta == other.getRespuesta() &&
-            ((this.resultado==null && other.getResultado()==null) || 
-             (this.resultado!=null &&
-              this.resultado.equals(other.getResultado())));
-        __equalsCalc = null;
-        return _equals;
-    }
-
-    private boolean __hashCodeCalc = false;
-    public synchronized int hashCode() {
-        if (__hashCodeCalc) {
-            return 0;
-        }
-        __hashCodeCalc = true;
-        int _hashCode = 1;
-        _hashCode += (isCancelado() ? Boolean.TRUE : Boolean.FALSE).hashCode();
-        _hashCode += getRespuesta();
-        if (getResultado() != null) {
-            _hashCode += getResultado().hashCode();
-        }
-        __hashCodeCalc = false;
-        return _hashCode;
-    }
-
-    // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(ResultadoCancelacion.class, true);
-
-    static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://facturews/", "resultadoCancelacion"));
-        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("cancelado");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "cancelado"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("respuesta");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "respuesta"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("resultado");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "resultado"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-    }
-
-    /**
-     * Return type metadata object
-     */
-    public static org.apache.axis.description.TypeDesc getTypeDesc() {
-        return typeDesc;
-    }
-
-    /**
-     * Get Custom Serializer
-     */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
-    }
-
-    /**
-     * Get Custom Deserializer
-     */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
-    }
-
-}
