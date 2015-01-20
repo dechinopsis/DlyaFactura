@@ -1,418 +1,586 @@
-/*     */ package com.dlya.facturews;
-/*     */ 
-/*     */ import java.io.Serializable;
-/*     */ import javax.xml.namespace.QName;
-/*     */ import org.apache.axis.description.ElementDesc;
-/*     */ import org.apache.axis.description.TypeDesc;
-/*     */ import org.apache.axis.encoding.Deserializer;
-/*     */ import org.apache.axis.encoding.Serializer;
-/*     */ import org.apache.axis.encoding.ser.BeanDeserializer;
-/*     */ import org.apache.axis.encoding.ser.BeanSerializer;
-/*     */ 
-/*     */ public class Resultado
-/*     */   implements Serializable
-/*     */ {
-/*     */   private int AAprobacion;
-/*     */   private String cadenaOriginal;
-/*     */   private String cadenaPac;
-/*     */   private String certificado;
-/*     */   private String codigoBarras;
-/*     */   private String fechaTimbrado;
-/*     */   private int NAprobacion;
-/*     */   private String numCertificadoPac;
-/*     */   private String sello;
-/*     */   private String selloPac;
-/*     */   private int status;
-/*     */   private String strStatus;
-/*     */   private String uuid;
-/*     */   private String xml;
-/* 353 */   private Object __equalsCalc = null;
-/*     */ 
-/* 405 */   private boolean __hashCodeCalc = false;
-/*     */ 
-/* 454 */   private static TypeDesc typeDesc = new TypeDesc(Resultado.class, true);
-/*     */ 
-/*     */   static {
-/* 457 */     typeDesc.setXmlType(new QName("http://facturews/", "resultado"));
-/* 458 */     ElementDesc elemField = new ElementDesc();
-/* 459 */     elemField.setFieldName("AAprobacion");
-/* 460 */     elemField.setXmlName(new QName("", "AAprobacion"));
-/* 461 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "int"));
-/* 462 */     elemField.setNillable(false);
-/* 463 */     typeDesc.addFieldDesc(elemField);
-/* 464 */     elemField = new ElementDesc();
-/* 465 */     elemField.setFieldName("cadenaOriginal");
-/* 466 */     elemField.setXmlName(new QName("", "cadenaOriginal"));
-/* 467 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 468 */     elemField.setMinOccurs(0);
-/* 469 */     elemField.setNillable(false);
-/* 470 */     typeDesc.addFieldDesc(elemField);
-/* 471 */     elemField = new ElementDesc();
-/* 472 */     elemField.setFieldName("cadenaPac");
-/* 473 */     elemField.setXmlName(new QName("", "cadenaPac"));
-/* 474 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 475 */     elemField.setMinOccurs(0);
-/* 476 */     elemField.setNillable(false);
-/* 477 */     typeDesc.addFieldDesc(elemField);
-/* 478 */     elemField = new ElementDesc();
-/* 479 */     elemField.setFieldName("certificado");
-/* 480 */     elemField.setXmlName(new QName("", "certificado"));
-/* 481 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 482 */     elemField.setMinOccurs(0);
-/* 483 */     elemField.setNillable(false);
-/* 484 */     typeDesc.addFieldDesc(elemField);
-/* 485 */     elemField = new ElementDesc();
-/* 486 */     elemField.setFieldName("codigoBarras");
-/* 487 */     elemField.setXmlName(new QName("", "codigoBarras"));
-/* 488 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 489 */     elemField.setMinOccurs(0);
-/* 490 */     elemField.setNillable(false);
-/* 491 */     typeDesc.addFieldDesc(elemField);
-/* 492 */     elemField = new ElementDesc();
-/* 493 */     elemField.setFieldName("fechaTimbrado");
-/* 494 */     elemField.setXmlName(new QName("", "fechaTimbrado"));
-/* 495 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 496 */     elemField.setMinOccurs(0);
-/* 497 */     elemField.setNillable(false);
-/* 498 */     typeDesc.addFieldDesc(elemField);
-/* 499 */     elemField = new ElementDesc();
-/* 500 */     elemField.setFieldName("NAprobacion");
-/* 501 */     elemField.setXmlName(new QName("", "NAprobacion"));
-/* 502 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "int"));
-/* 503 */     elemField.setNillable(false);
-/* 504 */     typeDesc.addFieldDesc(elemField);
-/* 505 */     elemField = new ElementDesc();
-/* 506 */     elemField.setFieldName("numCertificadoPac");
-/* 507 */     elemField.setXmlName(new QName("", "numCertificadoPac"));
-/* 508 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 509 */     elemField.setMinOccurs(0);
-/* 510 */     elemField.setNillable(false);
-/* 511 */     typeDesc.addFieldDesc(elemField);
-/* 512 */     elemField = new ElementDesc();
-/* 513 */     elemField.setFieldName("sello");
-/* 514 */     elemField.setXmlName(new QName("", "sello"));
-/* 515 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 516 */     elemField.setMinOccurs(0);
-/* 517 */     elemField.setNillable(false);
-/* 518 */     typeDesc.addFieldDesc(elemField);
-/* 519 */     elemField = new ElementDesc();
-/* 520 */     elemField.setFieldName("selloPac");
-/* 521 */     elemField.setXmlName(new QName("", "selloPac"));
-/* 522 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 523 */     elemField.setMinOccurs(0);
-/* 524 */     elemField.setNillable(false);
-/* 525 */     typeDesc.addFieldDesc(elemField);
-/* 526 */     elemField = new ElementDesc();
-/* 527 */     elemField.setFieldName("status");
-/* 528 */     elemField.setXmlName(new QName("", "status"));
-/* 529 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "int"));
-/* 530 */     elemField.setNillable(false);
-/* 531 */     typeDesc.addFieldDesc(elemField);
-/* 532 */     elemField = new ElementDesc();
-/* 533 */     elemField.setFieldName("strStatus");
-/* 534 */     elemField.setXmlName(new QName("", "strStatus"));
-/* 535 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 536 */     elemField.setMinOccurs(0);
-/* 537 */     elemField.setNillable(false);
-/* 538 */     typeDesc.addFieldDesc(elemField);
-/* 539 */     elemField = new ElementDesc();
-/* 540 */     elemField.setFieldName("uuid");
-/* 541 */     elemField.setXmlName(new QName("", "uuid"));
-/* 542 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 543 */     elemField.setMinOccurs(0);
-/* 544 */     elemField.setNillable(false);
-/* 545 */     typeDesc.addFieldDesc(elemField);
-/* 546 */     elemField = new ElementDesc();
-/* 547 */     elemField.setFieldName("xml");
-/* 548 */     elemField.setXmlName(new QName("", "xml"));
-/* 549 */     elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
-/* 550 */     elemField.setMinOccurs(0);
-/* 551 */     elemField.setNillable(false);
-/* 552 */     typeDesc.addFieldDesc(elemField);
-/*     */   }
-/*     */ 
-/*     */   public Resultado()
-/*     */   {
-/*     */   }
-/*     */ 
-/*     */   public Resultado(int AAprobacion, String cadenaOriginal, String cadenaPac, String certificado, String codigoBarras, String fechaTimbrado, int NAprobacion, String numCertificadoPac, String sello, String selloPac, int status, String strStatus, String uuid, String xml)
-/*     */   {
-/*  57 */     this.AAprobacion = AAprobacion;
-/*  58 */     this.cadenaOriginal = cadenaOriginal;
-/*  59 */     this.cadenaPac = cadenaPac;
-/*  60 */     this.certificado = certificado;
-/*  61 */     this.codigoBarras = codigoBarras;
-/*  62 */     this.fechaTimbrado = fechaTimbrado;
-/*  63 */     this.NAprobacion = NAprobacion;
-/*  64 */     this.numCertificadoPac = numCertificadoPac;
-/*  65 */     this.sello = sello;
-/*  66 */     this.selloPac = selloPac;
-/*  67 */     this.status = status;
-/*  68 */     this.strStatus = strStatus;
-/*  69 */     this.uuid = uuid;
-/*  70 */     this.xml = xml;
-/*     */   }
-/*     */ 
-/*     */   public int getAAprobacion()
-/*     */   {
-/*  80 */     return this.AAprobacion;
-/*     */   }
-/*     */ 
-/*     */   public void setAAprobacion(int AAprobacion)
-/*     */   {
-/*  90 */     this.AAprobacion = AAprobacion;
-/*     */   }
-/*     */ 
-/*     */   public String getCadenaOriginal()
-/*     */   {
-/* 100 */     return this.cadenaOriginal;
-/*     */   }
-/*     */ 
-/*     */   public void setCadenaOriginal(String cadenaOriginal)
-/*     */   {
-/* 110 */     this.cadenaOriginal = cadenaOriginal;
-/*     */   }
-/*     */ 
-/*     */   public String getCadenaPac()
-/*     */   {
-/* 120 */     return this.cadenaPac;
-/*     */   }
-/*     */ 
-/*     */   public void setCadenaPac(String cadenaPac)
-/*     */   {
-/* 130 */     this.cadenaPac = cadenaPac;
-/*     */   }
-/*     */ 
-/*     */   public String getCertificado()
-/*     */   {
-/* 140 */     return this.certificado;
-/*     */   }
-/*     */ 
-/*     */   public void setCertificado(String certificado)
-/*     */   {
-/* 150 */     this.certificado = certificado;
-/*     */   }
-/*     */ 
-/*     */   public String getCodigoBarras()
-/*     */   {
-/* 160 */     return this.codigoBarras;
-/*     */   }
-/*     */ 
-/*     */   public void setCodigoBarras(String codigoBarras)
-/*     */   {
-/* 170 */     this.codigoBarras = codigoBarras;
-/*     */   }
-/*     */ 
-/*     */   public String getFechaTimbrado()
-/*     */   {
-/* 180 */     return this.fechaTimbrado;
-/*     */   }
-/*     */ 
-/*     */   public void setFechaTimbrado(String fechaTimbrado)
-/*     */   {
-/* 190 */     this.fechaTimbrado = fechaTimbrado;
-/*     */   }
-/*     */ 
-/*     */   public int getNAprobacion()
-/*     */   {
-/* 200 */     return this.NAprobacion;
-/*     */   }
-/*     */ 
-/*     */   public void setNAprobacion(int NAprobacion)
-/*     */   {
-/* 210 */     this.NAprobacion = NAprobacion;
-/*     */   }
-/*     */ 
-/*     */   public String getNumCertificadoPac()
-/*     */   {
-/* 220 */     return this.numCertificadoPac;
-/*     */   }
-/*     */ 
-/*     */   public void setNumCertificadoPac(String numCertificadoPac)
-/*     */   {
-/* 230 */     this.numCertificadoPac = numCertificadoPac;
-/*     */   }
-/*     */ 
-/*     */   public String getSello()
-/*     */   {
-/* 240 */     return this.sello;
-/*     */   }
-/*     */ 
-/*     */   public void setSello(String sello)
-/*     */   {
-/* 250 */     this.sello = sello;
-/*     */   }
-/*     */ 
-/*     */   public String getSelloPac()
-/*     */   {
-/* 260 */     return this.selloPac;
-/*     */   }
-/*     */ 
-/*     */   public void setSelloPac(String selloPac)
-/*     */   {
-/* 270 */     this.selloPac = selloPac;
-/*     */   }
-/*     */ 
-/*     */   public int getStatus()
-/*     */   {
-/* 280 */     return this.status;
-/*     */   }
-/*     */ 
-/*     */   public void setStatus(int status)
-/*     */   {
-/* 290 */     this.status = status;
-/*     */   }
-/*     */ 
-/*     */   public String getStrStatus()
-/*     */   {
-/* 300 */     return this.strStatus;
-/*     */   }
-/*     */ 
-/*     */   public void setStrStatus(String strStatus)
-/*     */   {
-/* 310 */     this.strStatus = strStatus;
-/*     */   }
-/*     */ 
-/*     */   public String getUuid()
-/*     */   {
-/* 320 */     return this.uuid;
-/*     */   }
-/*     */ 
-/*     */   public void setUuid(String uuid)
-/*     */   {
-/* 330 */     this.uuid = uuid;
-/*     */   }
-/*     */ 
-/*     */   public String getXml()
-/*     */   {
-/* 340 */     return this.xml;
-/*     */   }
-/*     */ 
-/*     */   public void setXml(String xml)
-/*     */   {
-/* 350 */     this.xml = xml;
-/*     */   }
-/*     */ 
-/*     */   public synchronized boolean equals(Object obj)
-/*     */   {
-/* 355 */     if (!(obj instanceof Resultado)) return false;
-/* 356 */     Resultado other = (Resultado)obj;
-/* 357 */     if (obj == null) return false;
-/* 358 */     if (this == obj) return true;
-/* 359 */     if (this.__equalsCalc != null) {
-/* 360 */       return this.__equalsCalc == obj;
-/*     */     }
-/* 362 */     this.__equalsCalc = obj;
-/*     */ 
-/* 364 */     boolean _equals = 
-/* 365 */       (this.AAprobacion == other.getAAprobacion()) && (
-/* 366 */       ((this.cadenaOriginal == null) && (other.getCadenaOriginal() == null)) || (
-/* 367 */       (this.cadenaOriginal != null) && 
-/* 368 */       (this.cadenaOriginal.equals(other.getCadenaOriginal())) && (
-/* 369 */       ((this.cadenaPac == null) && (other.getCadenaPac() == null)) || (
-/* 370 */       (this.cadenaPac != null) && 
-/* 371 */       (this.cadenaPac.equals(other.getCadenaPac())) && (
-/* 372 */       ((this.certificado == null) && (other.getCertificado() == null)) || (
-/* 373 */       (this.certificado != null) && 
-/* 374 */       (this.certificado.equals(other.getCertificado())) && (
-/* 375 */       ((this.codigoBarras == null) && (other.getCodigoBarras() == null)) || (
-/* 376 */       (this.codigoBarras != null) && 
-/* 377 */       (this.codigoBarras.equals(other.getCodigoBarras())) && (
-/* 378 */       ((this.fechaTimbrado == null) && (other.getFechaTimbrado() == null)) || (
-/* 379 */       (this.fechaTimbrado != null) && 
-/* 380 */       (this.fechaTimbrado.equals(other.getFechaTimbrado())) && 
-/* 381 */       (this.NAprobacion == other.getNAprobacion()) && (
-/* 382 */       ((this.numCertificadoPac == null) && (other.getNumCertificadoPac() == null)) || (
-/* 383 */       (this.numCertificadoPac != null) && 
-/* 384 */       (this.numCertificadoPac.equals(other.getNumCertificadoPac())) && (
-/* 385 */       ((this.sello == null) && (other.getSello() == null)) || (
-/* 386 */       (this.sello != null) && 
-/* 387 */       (this.sello.equals(other.getSello())) && (
-/* 388 */       ((this.selloPac == null) && (other.getSelloPac() == null)) || (
-/* 389 */       (this.selloPac != null) && 
-/* 390 */       (this.selloPac.equals(other.getSelloPac())) && 
-/* 391 */       (this.status == other.getStatus()) && (
-/* 392 */       ((this.strStatus == null) && (other.getStrStatus() == null)) || (
-/* 393 */       (this.strStatus != null) && 
-/* 394 */       (this.strStatus.equals(other.getStrStatus())) && (
-/* 395 */       ((this.uuid == null) && (other.getUuid() == null)) || (
-/* 396 */       (this.uuid != null) && 
-/* 397 */       (this.uuid.equals(other.getUuid())) && (
-/* 398 */       ((this.xml == null) && (other.getXml() == null)) || (
-/* 399 */       (this.xml != null) && 
-/* 400 */       (this.xml.equals(other.getXml()))))))))))))))))))))))));
-/* 401 */     this.__equalsCalc = null;
-/* 402 */     return _equals;
-/*     */   }
-/*     */ 
-/*     */   public synchronized int hashCode()
-/*     */   {
-/* 407 */     if (this.__hashCodeCalc) {
-/* 408 */       return 0;
-/*     */     }
-/* 410 */     this.__hashCodeCalc = true;
-/* 411 */     int _hashCode = 1;
-/* 412 */     _hashCode += getAAprobacion();
-/* 413 */     if (getCadenaOriginal() != null) {
-/* 414 */       _hashCode += getCadenaOriginal().hashCode();
-/*     */     }
-/* 416 */     if (getCadenaPac() != null) {
-/* 417 */       _hashCode += getCadenaPac().hashCode();
-/*     */     }
-/* 419 */     if (getCertificado() != null) {
-/* 420 */       _hashCode += getCertificado().hashCode();
-/*     */     }
-/* 422 */     if (getCodigoBarras() != null) {
-/* 423 */       _hashCode += getCodigoBarras().hashCode();
-/*     */     }
-/* 425 */     if (getFechaTimbrado() != null) {
-/* 426 */       _hashCode += getFechaTimbrado().hashCode();
-/*     */     }
-/* 428 */     _hashCode += getNAprobacion();
-/* 429 */     if (getNumCertificadoPac() != null) {
-/* 430 */       _hashCode += getNumCertificadoPac().hashCode();
-/*     */     }
-/* 432 */     if (getSello() != null) {
-/* 433 */       _hashCode += getSello().hashCode();
-/*     */     }
-/* 435 */     if (getSelloPac() != null) {
-/* 436 */       _hashCode += getSelloPac().hashCode();
-/*     */     }
-/* 438 */     _hashCode += getStatus();
-/* 439 */     if (getStrStatus() != null) {
-/* 440 */       _hashCode += getStrStatus().hashCode();
-/*     */     }
-/* 442 */     if (getUuid() != null) {
-/* 443 */       _hashCode += getUuid().hashCode();
-/*     */     }
-/* 445 */     if (getXml() != null) {
-/* 446 */       _hashCode += getXml().hashCode();
-/*     */     }
-/* 448 */     this.__hashCodeCalc = false;
-/* 449 */     return _hashCode;
-/*     */   }
-/*     */ 
-/*     */   public static TypeDesc getTypeDesc()
-/*     */   {
-/* 559 */     return typeDesc;
-/*     */   }
-/*     */ 
-/*     */   public static Serializer getSerializer(String mechType, Class _javaType, QName _xmlType)
-/*     */   {
-/* 569 */     return 
-/* 570 */       new BeanSerializer(
-/* 571 */       _javaType, _xmlType, typeDesc);
-/*     */   }
-/*     */ 
-/*     */   public static Deserializer getDeserializer(String mechType, Class _javaType, QName _xmlType)
-/*     */   {
-/* 581 */     return 
-/* 582 */       new BeanDeserializer(
-/* 583 */       _javaType, _xmlType, typeDesc);
-/*     */   }
-/*     */ }
-
-/* Location:           C:\Users\David\Desktop\BasesR\JAR\
- * Qualified Name:     com.dlya.facturews.Resultado
- * JD-Core Version:    0.6.0
+/**
+ * Resultado.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
+
+package com.dlya.facturews;
+
+public class Resultado  implements java.io.Serializable {
+    private int AAprobacion;
+
+    private java.lang.String cadenaOriginal;
+
+    private java.lang.String cadenaPac;
+
+    private java.lang.String certificado;
+
+    private java.lang.String codigoBarras;
+
+    private java.lang.String fechaTimbrado;
+
+    private int NAprobacion;
+
+    private java.lang.String numCertificadoPac;
+
+    private java.lang.String sello;
+
+    private java.lang.String selloPac;
+
+    private int status;
+
+    private java.lang.String strStatus;
+
+    private java.lang.String uuid;
+
+    private java.lang.String xml;
+
+    public Resultado() {
+    }
+
+    public Resultado(
+           int AAprobacion,
+           java.lang.String cadenaOriginal,
+           java.lang.String cadenaPac,
+           java.lang.String certificado,
+           java.lang.String codigoBarras,
+           java.lang.String fechaTimbrado,
+           int NAprobacion,
+           java.lang.String numCertificadoPac,
+           java.lang.String sello,
+           java.lang.String selloPac,
+           int status,
+           java.lang.String strStatus,
+           java.lang.String uuid,
+           java.lang.String xml) {
+           this.AAprobacion = AAprobacion;
+           this.cadenaOriginal = cadenaOriginal;
+           this.cadenaPac = cadenaPac;
+           this.certificado = certificado;
+           this.codigoBarras = codigoBarras;
+           this.fechaTimbrado = fechaTimbrado;
+           this.NAprobacion = NAprobacion;
+           this.numCertificadoPac = numCertificadoPac;
+           this.sello = sello;
+           this.selloPac = selloPac;
+           this.status = status;
+           this.strStatus = strStatus;
+           this.uuid = uuid;
+           this.xml = xml;
+    }
+
+
+    /**
+     * Gets the AAprobacion value for this Resultado.
+     * 
+     * @return AAprobacion
+     */
+    public int getAAprobacion() {
+        return AAprobacion;
+    }
+
+
+    /**
+     * Sets the AAprobacion value for this Resultado.
+     * 
+     * @param AAprobacion
+     */
+    public void setAAprobacion(int AAprobacion) {
+        this.AAprobacion = AAprobacion;
+    }
+
+
+    /**
+     * Gets the cadenaOriginal value for this Resultado.
+     * 
+     * @return cadenaOriginal
+     */
+    public java.lang.String getCadenaOriginal() {
+        return cadenaOriginal;
+    }
+
+
+    /**
+     * Sets the cadenaOriginal value for this Resultado.
+     * 
+     * @param cadenaOriginal
+     */
+    public void setCadenaOriginal(java.lang.String cadenaOriginal) {
+        this.cadenaOriginal = cadenaOriginal;
+    }
+
+
+    /**
+     * Gets the cadenaPac value for this Resultado.
+     * 
+     * @return cadenaPac
+     */
+    public java.lang.String getCadenaPac() {
+        return cadenaPac;
+    }
+
+
+    /**
+     * Sets the cadenaPac value for this Resultado.
+     * 
+     * @param cadenaPac
+     */
+    public void setCadenaPac(java.lang.String cadenaPac) {
+        this.cadenaPac = cadenaPac;
+    }
+
+
+    /**
+     * Gets the certificado value for this Resultado.
+     * 
+     * @return certificado
+     */
+    public java.lang.String getCertificado() {
+        return certificado;
+    }
+
+
+    /**
+     * Sets the certificado value for this Resultado.
+     * 
+     * @param certificado
+     */
+    public void setCertificado(java.lang.String certificado) {
+        this.certificado = certificado;
+    }
+
+
+    /**
+     * Gets the codigoBarras value for this Resultado.
+     * 
+     * @return codigoBarras
+     */
+    public java.lang.String getCodigoBarras() {
+        return codigoBarras;
+    }
+
+
+    /**
+     * Sets the codigoBarras value for this Resultado.
+     * 
+     * @param codigoBarras
+     */
+    public void setCodigoBarras(java.lang.String codigoBarras) {
+        this.codigoBarras = codigoBarras;
+    }
+
+
+    /**
+     * Gets the fechaTimbrado value for this Resultado.
+     * 
+     * @return fechaTimbrado
+     */
+    public java.lang.String getFechaTimbrado() {
+        return fechaTimbrado;
+    }
+
+
+    /**
+     * Sets the fechaTimbrado value for this Resultado.
+     * 
+     * @param fechaTimbrado
+     */
+    public void setFechaTimbrado(java.lang.String fechaTimbrado) {
+        this.fechaTimbrado = fechaTimbrado;
+    }
+
+
+    /**
+     * Gets the NAprobacion value for this Resultado.
+     * 
+     * @return NAprobacion
+     */
+    public int getNAprobacion() {
+        return NAprobacion;
+    }
+
+
+    /**
+     * Sets the NAprobacion value for this Resultado.
+     * 
+     * @param NAprobacion
+     */
+    public void setNAprobacion(int NAprobacion) {
+        this.NAprobacion = NAprobacion;
+    }
+
+
+    /**
+     * Gets the numCertificadoPac value for this Resultado.
+     * 
+     * @return numCertificadoPac
+     */
+    public java.lang.String getNumCertificadoPac() {
+        return numCertificadoPac;
+    }
+
+
+    /**
+     * Sets the numCertificadoPac value for this Resultado.
+     * 
+     * @param numCertificadoPac
+     */
+    public void setNumCertificadoPac(java.lang.String numCertificadoPac) {
+        this.numCertificadoPac = numCertificadoPac;
+    }
+
+
+    /**
+     * Gets the sello value for this Resultado.
+     * 
+     * @return sello
+     */
+    public java.lang.String getSello() {
+        return sello;
+    }
+
+
+    /**
+     * Sets the sello value for this Resultado.
+     * 
+     * @param sello
+     */
+    public void setSello(java.lang.String sello) {
+        this.sello = sello;
+    }
+
+
+    /**
+     * Gets the selloPac value for this Resultado.
+     * 
+     * @return selloPac
+     */
+    public java.lang.String getSelloPac() {
+        return selloPac;
+    }
+
+
+    /**
+     * Sets the selloPac value for this Resultado.
+     * 
+     * @param selloPac
+     */
+    public void setSelloPac(java.lang.String selloPac) {
+        this.selloPac = selloPac;
+    }
+
+
+    /**
+     * Gets the status value for this Resultado.
+     * 
+     * @return status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+
+    /**
+     * Sets the status value for this Resultado.
+     * 
+     * @param status
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+
+    /**
+     * Gets the strStatus value for this Resultado.
+     * 
+     * @return strStatus
+     */
+    public java.lang.String getStrStatus() {
+        return strStatus;
+    }
+
+
+    /**
+     * Sets the strStatus value for this Resultado.
+     * 
+     * @param strStatus
+     */
+    public void setStrStatus(java.lang.String strStatus) {
+        this.strStatus = strStatus;
+    }
+
+
+    /**
+     * Gets the uuid value for this Resultado.
+     * 
+     * @return uuid
+     */
+    public java.lang.String getUuid() {
+        return uuid;
+    }
+
+
+    /**
+     * Sets the uuid value for this Resultado.
+     * 
+     * @param uuid
+     */
+    public void setUuid(java.lang.String uuid) {
+        this.uuid = uuid;
+    }
+
+
+    /**
+     * Gets the xml value for this Resultado.
+     * 
+     * @return xml
+     */
+    public java.lang.String getXml() {
+        return xml;
+    }
+
+
+    /**
+     * Sets the xml value for this Resultado.
+     * 
+     * @param xml
+     */
+    public void setXml(java.lang.String xml) {
+        this.xml = xml;
+    }
+
+    private java.lang.Object __equalsCalc = null;
+    public synchronized boolean equals(java.lang.Object obj) {
+        if (!(obj instanceof Resultado)) return false;
+        Resultado other = (Resultado) obj;
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (__equalsCalc != null) {
+            return (__equalsCalc == obj);
+        }
+        __equalsCalc = obj;
+        boolean _equals;
+        _equals = true && 
+            this.AAprobacion == other.getAAprobacion() &&
+            ((this.cadenaOriginal==null && other.getCadenaOriginal()==null) || 
+             (this.cadenaOriginal!=null &&
+              this.cadenaOriginal.equals(other.getCadenaOriginal()))) &&
+            ((this.cadenaPac==null && other.getCadenaPac()==null) || 
+             (this.cadenaPac!=null &&
+              this.cadenaPac.equals(other.getCadenaPac()))) &&
+            ((this.certificado==null && other.getCertificado()==null) || 
+             (this.certificado!=null &&
+              this.certificado.equals(other.getCertificado()))) &&
+            ((this.codigoBarras==null && other.getCodigoBarras()==null) || 
+             (this.codigoBarras!=null &&
+              this.codigoBarras.equals(other.getCodigoBarras()))) &&
+            ((this.fechaTimbrado==null && other.getFechaTimbrado()==null) || 
+             (this.fechaTimbrado!=null &&
+              this.fechaTimbrado.equals(other.getFechaTimbrado()))) &&
+            this.NAprobacion == other.getNAprobacion() &&
+            ((this.numCertificadoPac==null && other.getNumCertificadoPac()==null) || 
+             (this.numCertificadoPac!=null &&
+              this.numCertificadoPac.equals(other.getNumCertificadoPac()))) &&
+            ((this.sello==null && other.getSello()==null) || 
+             (this.sello!=null &&
+              this.sello.equals(other.getSello()))) &&
+            ((this.selloPac==null && other.getSelloPac()==null) || 
+             (this.selloPac!=null &&
+              this.selloPac.equals(other.getSelloPac()))) &&
+            this.status == other.getStatus() &&
+            ((this.strStatus==null && other.getStrStatus()==null) || 
+             (this.strStatus!=null &&
+              this.strStatus.equals(other.getStrStatus()))) &&
+            ((this.uuid==null && other.getUuid()==null) || 
+             (this.uuid!=null &&
+              this.uuid.equals(other.getUuid()))) &&
+            ((this.xml==null && other.getXml()==null) || 
+             (this.xml!=null &&
+              this.xml.equals(other.getXml())));
+        __equalsCalc = null;
+        return _equals;
+    }
+
+    private boolean __hashCodeCalc = false;
+    public synchronized int hashCode() {
+        if (__hashCodeCalc) {
+            return 0;
+        }
+        __hashCodeCalc = true;
+        int _hashCode = 1;
+        _hashCode += getAAprobacion();
+        if (getCadenaOriginal() != null) {
+            _hashCode += getCadenaOriginal().hashCode();
+        }
+        if (getCadenaPac() != null) {
+            _hashCode += getCadenaPac().hashCode();
+        }
+        if (getCertificado() != null) {
+            _hashCode += getCertificado().hashCode();
+        }
+        if (getCodigoBarras() != null) {
+            _hashCode += getCodigoBarras().hashCode();
+        }
+        if (getFechaTimbrado() != null) {
+            _hashCode += getFechaTimbrado().hashCode();
+        }
+        _hashCode += getNAprobacion();
+        if (getNumCertificadoPac() != null) {
+            _hashCode += getNumCertificadoPac().hashCode();
+        }
+        if (getSello() != null) {
+            _hashCode += getSello().hashCode();
+        }
+        if (getSelloPac() != null) {
+            _hashCode += getSelloPac().hashCode();
+        }
+        _hashCode += getStatus();
+        if (getStrStatus() != null) {
+            _hashCode += getStrStatus().hashCode();
+        }
+        if (getUuid() != null) {
+            _hashCode += getUuid().hashCode();
+        }
+        if (getXml() != null) {
+            _hashCode += getXml().hashCode();
+        }
+        __hashCodeCalc = false;
+        return _hashCode;
+    }
+
+    // Type metadata
+    private static org.apache.axis.description.TypeDesc typeDesc =
+        new org.apache.axis.description.TypeDesc(Resultado.class, true);
+
+    static {
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://facturews/", "resultado"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("AAprobacion");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "AAprobacion"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("cadenaOriginal");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "cadenaOriginal"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("cadenaPac");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "cadenaPac"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("certificado");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "certificado"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("codigoBarras");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "codigoBarras"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("fechaTimbrado");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "fechaTimbrado"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("NAprobacion");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "NAprobacion"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("numCertificadoPac");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "numCertificadoPac"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("sello");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "sello"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("selloPac");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "selloPac"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("status");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "status"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("strStatus");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "strStatus"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("uuid");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "uuid"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("xml");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "xml"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+    }
+
+    /**
+     * Return type metadata object
+     */
+    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
+
+    /**
+     * Get Custom Serializer
+     */
+    public static org.apache.axis.encoding.Serializer getSerializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanSerializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+    /**
+     * Get Custom Deserializer
+     */
+    public static org.apache.axis.encoding.Deserializer getDeserializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanDeserializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+}
