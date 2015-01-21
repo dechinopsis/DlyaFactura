@@ -1,0 +1,203 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.StringWriter;
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.util.Date;
+import java.util.Scanner;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.rpc.ServiceException;
+
+import com.dlya.facturetype.ComprobanteTipoDeComprobanteType;
+import com.dlya.facturews.CDlyaFacture;
+import com.dlya.facturews.FactureServicio;
+import com.dlya.facturews.FactureServicioServiceLocator;
+import com.dlya.facturews.ResultDlya;
+import com.dlya.facturews.Resultado;
+import com.dlya.facturexsd.Comprobante;
+import com.dlya.facturexsd.Concepto;
+import com.dlya.facturexsd.Conceptos;
+import com.dlya.facturexsd.Domicilio;
+import com.dlya.facturexsd.DomicilioFiscal;
+import com.dlya.facturexsd.Emisor;
+import com.dlya.facturexsd.ExpedidoEn;
+import com.dlya.facturexsd.Impuestos;
+import com.dlya.facturexsd.Receptor;
+import com.dlya.facturexsd.RegimenFiscal;
+import com.dlya.facturexsd.ConceptosAdicionales;
+import com.dlya.facturexsd.ConceptoAdicional;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {           
+            FactureServicioServiceLocator locator = new FactureServicioServiceLocator();
+
+            locator.setFactureServicioPortEndpointAddress("http://www.jonima.com.mx:3014/FactureWS/FactureServicio");
+
+            System.out.println(locator.getFactureServicioPortAddress());
+
+            FactureServicio servicio;
+            servicio = locator.getFactureServicioPort();
+
+            JAXBContext context = JAXBContext.newInstance(Comprobante.class);
+            Marshaller marshaller = context.createMarshaller();
+
+            StringWriter stringWriter = new StringWriter();
+
+            Comprobante comprobante = new Comprobante();
+
+            //xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            //xmlns:xsd="http://www.w3.org/2001/XMLSchema
+            //xmlns="http://www.sat.gob.mx/cfd/3"
+
+            comprobante.set_xsi("http://www.w3.org/2001/XMLSchema-instance");
+            comprobante.set_xsd("http://www.w3.org/2001/XMLSchema");
+            comprobante.set_xmlns("http://www.sat.gob.mx/cfd/3");
+
+            comprobante.setNumCtaPago("Efectivo");
+
+            Emisor emisor = new Emisor();
+            emisor.setNombre("Credito Familiar, S.A. de C.V., SOFOM, ER");
+            emisor.setRfc("AAA010101AAA");
+
+            comprobante.setCveCliente("0000005");
+
+
+            DomicilioFiscal dom = new DomicilioFiscal();
+            dom.setCalle("LOPE DE VEGA");
+            dom.setNoExterior("125");
+            dom.setColonia("Chapultepec Morales");
+            dom.setMunicipio("Miguel Hidalgo");
+            dom.setEstado("D.F.");
+            dom.setPais("MEXICO");
+            dom.setCodigoPostal("11570");
+            emisor.setDomicilioFiscal(dom);
+
+            ExpedidoEn expden = new ExpedidoEn();
+                            
+            expden.setCalle("SEVILLA");
+            expden.setNoExterior("125");
+            //expden.setColonia("AREQUIPA");
+            expden.setMunicipio("AREQUIPA");
+            expden.setEstado("AREQUIPA");
+            expden.setPais("PERU");
+            //expden.setCodigoPostal("051");
+            expden.setReferencia("CARAJO");
+            emisor.setExpedidoEn(expden);
+
+            RegimenFiscal rgf=new RegimenFiscal();
+            rgf.setRegimen("Regimen General de Ley");
+            emisor.setRegimen(rgf);
+
+            Receptor receptor = new Receptor();
+            receptor.setNombre("Nombre del Cliente");
+            receptor.setRfc("XAXX010101000");
+
+            Domicilio dom2 = new Domicilio();
+            dom2.setCalle("N/A");
+            dom2.setNoExterior("N/A");
+            dom2.setColonia("N/A");
+            dom2.setMunicipio("N/A");
+            dom2.setEstado("N/A");
+            dom2.setPais("MEXICO");
+            dom2.setCodigoPostal("02430");
+            receptor.setDomicilio(dom2);
+
+
+            comprobante.setEmisor(emisor);              
+            comprobante.setReceptor(receptor);
+
+            Conceptos conceptos = new Conceptos();
+
+            Concepto concepto = new Concepto();
+            concepto.setCantidad(new BigDecimal("1"));
+            concepto.setDescripcion("IMPORTE 1");
+            concepto.setUnidad("Servicio");
+            concepto.setNoIdentificacion("N\\A");
+            concepto.setValorUnitario(new BigDecimal("50.00"));
+            concepto.setImporte(new BigDecimal("1"));
+
+            conceptos.addConcepto(concepto);
+            
+            ConceptosAdicionales conceptosadicionales = new ConceptosAdicionales();
+            ConceptoAdicional conceptoadicional = new ConceptoAdicional();
+            conceptoadicional.setImporte(new BigDecimal("1"));
+            conceptoadicional.setDescripcion("IMPORTE1");
+           
+            conceptosadicionales.addConceptoAdicional(conceptoadicional);
+            comprobante.setConceptosAdicionales(conceptosadicionales);
+            
+            comprobante.setConceptos(conceptos);
+
+            comprobante.setVersion("3.2");
+            comprobante.setSerie("A");
+            comprobante.setFolio("120000563");
+            //comprobante.setFecha(new Date(90,10,14));
+            comprobante.setfechaauxiliar(new Date());
+            comprobante.setFecha("2014-02-13T13:03:55");
+
+            comprobante.setFormaDePago("Pago en una sola Exibicion");
+            comprobante.setCondicionesDePago("N/A");
+            comprobante.setSubTotal(new BigDecimal("50.00"));
+            comprobante.setDescuento(new BigDecimal("0.00"));
+            comprobante.setMotivoDescuento("N\\A");
+            //TIPO DE CAMBIO
+            comprobante.setTipoCambio("1.00");
+            //MONEDA
+            comprobante.setMoneda("MXP");
+            comprobante.setTotal(new BigDecimal("50.00"));
+            comprobante.setTipoDeComprobante(ComprobanteTipoDeComprobanteType.ingreso);
+            comprobante.setMetodoDePago("Efectivo");
+            //LUGAR EXPEDICION
+            comprobante.setLugarExpedicion("AREQUIPA");
+            //comprobante.setNumCtaPago("");
+            //NUM CTA PAGO
+            comprobante.setImpuestos(new Impuestos());
+
+            marshaller.marshal(comprobante, stringWriter);
+
+            // Print out the contents of the stringWriter
+            //String xml="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><comprobante>"+
+            //"<anoAprobacion>0</anoAprobacion><emisor rfc=\"CPN-120517-BE8\"><nombre>Crédito Familiar, S.A. de C.V., SOFOM, ER</nombre></emisor><noAprobacion>0</noAprobacion><receptor><nombre>Nombre del Cliente</nombre><rfc>XAXX010101000</rfc></receptor><version>2.0</version></comprobante>";
+            String xml = stringWriter.toString();
+            //Scanner nt = new Scanner(new FileReader(new File("C:\\Users\\Usuario\\Desktop\\David\\david2.txt")));
+            //xml = nt.nextLine();
+            //nt.close();
+            System.out.println(xml);                                                                
+
+            Resultado result = servicio.generaFactura(xml);
+
+            System.out.println("----------------------------");
+            System.out.println("Status: "+result.getStatus());
+            System.out.println("StrStatus: "+ result.getStrStatus());
+            System.out.println("----------------------------");
+            System.out.println("Anio de aprovación: "+result.getAAprobacion());
+            System.out.println("Cadena Original de CFDI: "+result.getCadenaOriginal());
+            System.out.println("Cadena de Complemento del PAC: "+result.getCadenaPac());
+            System.out.println("Número de certificado de sellos en el SAT: "+result.getCertificado());
+            System.out.println("Cadena de códigos de barra:"+result.getCodigoBarras());
+            System.out.println("Fecha de Timbrado:"+result.getFechaTimbrado());
+            System.out.println("Numero de Aprobación de Folios SAT:"+result.getNAprobacion());
+            System.out.println("Sello fiscal digital:"+result.getSello());
+            System.out.println("Sello fiscal digital del PAC:"+result.getSelloPac());
+            System.out.println("----------------------------");                            
+
+            System.out.println("XML: "+ result.getXml());
+        } catch (ServiceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (JAXBException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
+}

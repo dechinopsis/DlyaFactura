@@ -180,29 +180,17 @@ public class CDlyaFacture {
 				&& poRD.getGoResultado().getCadenaPac() != null) {
 			String resuArray[] = poRD.getGoResultado().getCadenaPac()
 					.split("\\|");
-			folioFiscal = resuArray[3];
-			certificado = resuArray[6];
+			if (resuArray.length > 6){
+				folioFiscal = resuArray[3];
+				certificado = resuArray[6];
+			}
 		}
 		poRD.setGcFolioFiscal(folioFiscal);
-
-		String montoPago = poRD.getGoComprobante().getTotal().toString();
-
-		String[] mPago = montoPago.split("\\.");
-		String ent = mPago[0];
-		String dec = mPago[1];
-		dec = poRD.omCompletar(dec, 6, 'R');
-
-		montoPago = ent + "." + dec;
-
-		String rfcEmisor = poRD.getGoComprobante().getEmisor().getRfc(); // Credito
-																			// Familiar
-		String rfcReceptor = poRD.getGoComprobante().getReceptor().getRfc(); // Cliente
-
-		String qrContent = "?re=" + rfcEmisor + "&rr=" + rfcReceptor + "&tt"
-				+ montoPago + "&id=" + folioFiscal;
-
+		
+		poRD.setQrCode(poRD,folioFiscal);
+		
 		try {
-			matrix = writer.encode(qrContent,
+			matrix = writer.encode(poRD.getQrCode(),
 					com.google.zxing.BarcodeFormat.QR_CODE, width, height);
 		} catch (com.google.zxing.WriterException e) {
 			// exit the method
@@ -281,8 +269,8 @@ public class CDlyaFacture {
 			hm.put("FolioFiscal", folioFiscal);
 			hm.put("FolioElectr",
 					poRD.omCompletar(poRD.getGoComprobante().getFolio(), 10));
-			hm.put("FHCertif", poRD.getGoResultado() == null ? null : poRD
-					.getGoResultado().getFechaTimbrado());
+			hm.put("FHCertif", poRD.getGoComprobante() == null ? null : poRD
+					.getGoComprobante().getFecha());
 			hm.put("NCertEmisor", poRD.getGoResultado() == null ? null : poRD
 					.getGoResultado().getCertificado());
 			// hm.put("Pago", "$ " +
@@ -431,8 +419,20 @@ public class CDlyaFacture {
 
 			hm.put("SDEmisor", poRD.getGoResultado() == null ? null : poRD
 					.getGoResultado().getSello());
-			hm.put("SDSAT", poRD.getGoResultado() == null ? null : poRD
-					.getGoResultado().getSelloPac());
+			
+			/*hm.put("SDSAT", poRD.getGoResultado() == null ? null : poRD
+					.getGoResultado().getSelloPac());*/
+			
+			if (poRD.getGoResultado() == null){
+				hm.put("SDSAT", null);
+			}
+			else if(poRD.getGoResultado().getSelloPac().trim().compareTo("")==0){
+				hm.put("SDSAT", null);
+			}
+			else{
+				hm.put("SDSAT", poRD.getGoResultado().getSelloPac());
+			}
+			
 			hm.put("CadenaOriginal", poRD.getGoResultado() == null ? null
 					: poRD.getGoResultado().getCadenaPac());
 			hm.put("NroCSDSAT", certificado);
