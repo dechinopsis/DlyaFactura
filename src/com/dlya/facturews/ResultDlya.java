@@ -59,6 +59,9 @@ public class ResultDlya {
     
     private String gcXML;
     
+    private String qrCode;
+    private String timeout;
+    
     public ResultDlya() {
 	super();
 	// TODO Auto-generated constructor stub
@@ -155,10 +158,10 @@ public class ResultDlya {
         Scoper = this.omCompletar(scoper,9);
     }
     public String omCompletar(String nt,int cant){
-	while(nt.length()<cant){
-	    nt = "0"+nt;
-	}
-	return nt;
+		while(nt.length()<cant){
+		    nt = "0"+nt;
+		}
+		return nt;
     }
 
     public String getScdoAnt() {
@@ -211,10 +214,10 @@ public class ResultDlya {
 
     public String omCompletar(String nt, int cant, char c) {
 	// TODO Auto-generated method stub
-	while(nt.length()<cant){
-	    nt = nt + "0";
-	}
-	return nt;
+		while(nt.length()<cant){
+		    nt = nt + "0";
+		}
+		return nt;
     }
 
     public String getFechHor() {
@@ -449,4 +452,35 @@ public class ResultDlya {
 		this.subtotal2 = subtotal2;
 	}
 
+	public void setQrCode(ResultDlya poRD, String folioFiscal) {
+		String montoPago = poRD.getGoComprobante().getTotal().toString();
+
+		String[] mPago = montoPago.split("\\.");
+		String ent = mPago[0];
+		String dec = mPago[1];
+		dec = poRD.omCompletar(dec, 6, 'R');
+
+		montoPago = ent + "." + dec;
+
+		String rfcEmisor = poRD.getGoComprobante().getEmisor().getRfc(); // Credito
+																			// Familiar
+		String rfcReceptor = poRD.getGoComprobante().getReceptor().getRfc(); // Cliente
+
+		String qrCode = "?re=" + rfcEmisor + "&rr=" + rfcReceptor + "&tt"
+				+ montoPago + "&id=" + folioFiscal;
+		
+		this.qrCode = qrCode;
+	}
+	
+	public String getQrCode() {
+		return qrCode;
+	}
+	
+	public String getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(String timeout) {
+		this.timeout = timeout;
+	}
 }
